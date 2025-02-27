@@ -1,4 +1,4 @@
-<h2 class="white-heading" style="text-align: center; padding: 2%;">Liste des Résidences</h2>
+<!-- <h2 class="white-heading" style="text-align: center; padding: 2%;">Liste des Résidences</h2>
 
     
     <div class="container text-center mb-3">
@@ -37,7 +37,75 @@
         </li>
       </ul>
     </div>
+-->
+<h2 class="white-heading" style="text-align: center; padding: 2%;">Liste des Résidences</h2>
 
+<div class="container text-center mb-3">
+  <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Rechercher par adresse..." style="width: 285px;">
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" style="margin-bottom: 20px" *ngFor="let r of filteredResidences()">
+      <div class="card shadow-sm" style="width: 18rem; border-radius: 10px;">
+        <img class="card-img-top" [src]="r.image" alt="Image non disponible" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ r.name }}</h5>
+          <span class="text-muted">{{ r.address }}</span>
+          <p [ngSwitch]="r.status.toLowerCase()" class="mt-2">
+            <span *ngSwitchCase="'disponible'" class="status-green">{{ r.status }}</span>
+            <span *ngSwitchCase="'vendu'" class="status-red">{{ r.status }}</span>
+            <span *ngSwitchCase="'en construction'" class="status-orange">{{ r.status }}</span>
+            <span *ngSwitchDefault class="status-default">{{ r.status }}</span>
+          </p>
+          <button (click)="toggleFavorite(r)" class="btn btn-light" [ngClass]="{'liked': isFavorite(r)}">
+            😍 {{ isFavorite(r) ? 'Unlike' : 'Like' }}
+          </button>
+          <button class="btn btn-warning" (click)="editResidence(r)">Modifier</button>
+         <!-- <button class="btn btn-danger" (click)="deleteResidence(r.id)">Supprimer</button>-->
+          <button class="btn-btr" [routerLink]="['/details', r.id]">Voir détails</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<h2 style="text-align: center; margin-top: 40px;">Ajouter / Modifier Résidence</h2>
+<div class="container">
+  <form (ngSubmit)="addResidence()">
+    <div class="form-group">
+      <label for="name">Nom</label>
+      <input type="text" [(ngModel)]="newResidence.name" name="name" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="address">Adresse</label>
+      <input type="text" [(ngModel)]="newResidence.address" name="address" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="image">Image (URL)</label>
+      <input type="text" [(ngModel)]="newResidence.image" name="image" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="status">Statut</label>
+      <select [(ngModel)]="newResidence.status" name="status" class="form-control" required>
+        <option value="Disponible">Disponible</option>
+        <option value="Vendu">Vendu</option>
+        <option value="En Construction">En Construction</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">{{ isEditing ? 'Mettre à jour' : 'Ajouter' }}</button>
+    
+  </form>
+</div>
+-->
+<h2 style="text-align: center; margin-top: 40px;">Favoris</h2>
+<div class="container">
+  <ul class="list-group">
+    <li *ngFor="let fav of favorites" class="list-group-item text-center">
+      {{ fav.name }}
+    </li>
+  </ul>
+</div>
 
 
 

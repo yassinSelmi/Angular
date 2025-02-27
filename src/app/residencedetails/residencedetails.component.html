@@ -1,1 +1,64 @@
-<p>residencedetails works!</p>
+
+<!-- 
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Détails de la Résidence</h2>
+  
+    <div *ngIf="currentResidence" class="card shadow-sm">
+      <img class="card-img-top" [src]="currentResidence.image" alt="{{ currentResidence.name }}" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+      <div class="card-body">
+        <h5 class="card-title">{{ currentResidence.name }}</h5>
+        <p class="card-text"><strong>Adresse :</strong> {{ currentResidence.address }}</p>
+        <p class="card-text"><strong>Statut :</strong> 
+          <span [ngClass]="{'text-success': currentResidence.status.toLowerCase() === 'disponible', 
+                          'text-danger': currentResidence.status.toLowerCase() === 'vendu', 
+                          'text-warning': currentResidence.status.toLowerCase() === 'en construction'}">
+            {{ currentResidence.status }}
+          </span>
+        </p>
+  
+        <div class="d-flex justify-content-between">
+          <button (click)="previousResidence()" [disabled]="currentIndex === 0" class="btn btn-secondary">Précédent</button>
+          <button (click)="nextResidence()" [disabled]="currentIndex >= listResidences.length - 1" class="btn btn-primary">Suivant</button>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="!currentResidence" class="container mt-4 text-center">
+      <h5>Aucune résidence trouvée.</h5>
+    </div>
+  </div>
+-->
+<div *ngIf="currentResidence" class="container mt-4">
+    <h2 class="text-center mb-4">Détails de la Résidence</h2>
+    
+    <div class="card shadow-sm">
+      <img class="card-img-top" [src]="currentResidence.image" alt="{{ currentResidence.name }}" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
+      <div class="card-body">
+        <h5 class="card-title">{{ currentResidence.name }}</h5>
+        <p class="card-text"><strong>Adresse :</strong> {{ currentResidence.address }}</p>
+        <p class="card-text"><strong>Statut :</strong> 
+          <span [ngClass]="{'text-success': currentResidence.status.toLowerCase() === 'disponible', 
+                          'text-danger': currentResidence.status.toLowerCase() === 'vendu', 
+                          'text-warning': currentResidence.status.toLowerCase() === 'en construction'}">
+            {{ currentResidence.status }}
+          </span>
+        </p>
+        
+        <div class="d-flex justify-content-between">
+          <button (click)="previousResidence()" [disabled]="currentIndex === 0" class="btn btn-secondary">Précédent</button>
+          <button (click)="nextResidence()" [disabled]="currentIndex >= listResidences.length - 1" class="btn btn-primary">Suivant</button>
+        </div>
+  
+        <!-- Boutons pour ajouter, mettre à jour ou supprimer la résidence -->
+        <div class="mt-3">
+          <button routerLink="/add-residence" class="btn btn-success">Ajouter Résidence</button>
+          <button class="btn btn-warning ml-2" (click)="populateAddForm()">Modifier Résidence</button>
+          <button class="btn btn-danger ml-2" (click)="deleteResidence()">Supprimer Résidence</button> <!-- Bouton de suppression -->
+        </div>
+      </div>
+    </div>
+</div>
+
+<div *ngIf="!currentResidence" class="container mt-4 text-center">
+    <h5>Aucune résidence trouvée.</h5>
+</div>

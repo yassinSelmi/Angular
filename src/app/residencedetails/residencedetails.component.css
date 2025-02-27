@@ -1,0 +1,57 @@
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #333;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.status {
+  font-weight: bold;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.status-green {
+  color: #28a745;
+}
+
+.status-red {
+  color: #dc3545;
+}
+
+.status-orange {
+  color: #fd7e14;
+}
+
+.status-default {
+  color: #6c757d;
+}
+.text-center.mb-4 {
+  color: #ea00ff; /* Choose a color that suits your design, e.g., a shade of blue */
+  font-weight: bold; /* Make the text bold for emphasis */
+  margin-bottom: 20px; /* Ensures spacing below the header */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+}

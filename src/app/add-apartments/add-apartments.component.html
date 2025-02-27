@@ -1,0 +1,279 @@
+<!--
+<div class="container p-4 border rounded bg-light">
+
+     Titre du formulaire
+   
+    <h2 class="text-center mb-4">Add New Apartment</h2>
+   
+    <form [formGroup]="AddApart"  class="container p-4 border rounded bg-light">
+   
+     <div class="row mb-3">
+   
+      <label for="apartNum" class="col-sm-3 col-form-label">Apartment Number:</label>
+   
+      <div class="col-sm-9">    
+   
+       <input type="text" id="apartNum" class="form-control" formControlName="apartNum" />
+
+       <span  *ngIf="AddApart.get('apartNum')?.valid  && AddApart.get('apartNum')?.touched "> apartment is required!!!!!!</span>
+
+       </div>
+      </div>
+     <div class="row mb-3">
+   
+      <label for="floorNum" class="col-sm-3 col-form-label">Floor Number:</label>
+   
+      <div class="col-sm-9">
+   
+       <input type="text" id="floorNum" class="form-control" formControlName="floorNum" />
+   
+   
+   
+      </div>
+   
+     </div>
+   
+   
+   
+     <div class="row mb-3">
+   
+      <label for="surface" class="col-sm-3 col-form-label">Surface:</label>
+   
+      <div class="col-sm-9">
+   
+       <input type="text" id="surface" class="form-control" formControlName="surface" />
+   
+   
+   
+      </div>
+   
+     </div>
+   
+   
+   
+     <div class="row mb-3">
+   
+      <label class="col-sm-3 col-form-label" >Terrace:</label>
+   
+      <div class="col-sm-9">
+   
+       <div class="form-check">
+   
+        <input type="radio" id="terraceYes" value="yes" formControlName="terrace" class="form-check-input" />
+   
+        <label for="terraceYes" class="form-check-label">Yes</label>
+   
+       </div>
+   
+       <div class="form-check">
+   
+        <input type="radio" id="terraceNo" value="no" formControlName="terrace" class="form-check-input" />
+   
+        <label for="terraceNo" class="form-check-label">No</label>
+   
+       </div>
+   
+      </div>
+   
+     </div>
+   
+   
+   
+     <div class="row mb-3">
+   
+   
+   
+       <input type="text" id="surfaceTerrace" class="form-control" formControlName="surfaceTerrace"
+   
+       />
+   
+   
+   
+      </div>
+   
+   
+   
+   
+   
+   
+   
+     <div class="row mb-3">
+   
+      <label class="col-sm-3 col-form-label">Category:</label>
+   
+      <div class="col-sm-9">
+   
+       <div class="form-check">
+   
+        <input type="radio" id="categoryS1" value="S+1" formControlName="category" class="form-check-input" />
+   
+        <label for="categoryS1" class="form-check-label">S+1</label>
+   
+       </div>
+   
+       <div class="form-check">
+   
+        <input type="radio" id="categoryS2" value="S+2" formControlName="category" class="form-check-input" />
+   
+        <label for="categoryS2" class="form-check-label">S+2</label>
+   
+       </div>
+   
+       <div class="form-check">
+   
+        <input type="radio" id="categoryS3" value="S+3" formControlName="category" class="form-check-input" />
+   
+        <label for="categoryS3" class="form-check-label">S+3</label>
+   
+       </div>
+   
+      </div>
+   
+     </div>
+   
+     <div class="mb-3">
+   
+      <label for="residence" class="form-label">Residence:</label>
+   
+      <select id="residence" class="form-select" formControlName="residence">
+   
+      </select>
+   
+     </div>
+   
+     <div class="row">
+   
+      <div class="col text-center">
+   
+       <button type="submit" class="btn btn-primary me-2" [disabled]="AddApart.invalid">Add</button>
+   
+       <button type="button" class="btn btn-secondary">Reset</button>
+   
+      </div>
+   
+     </div>
+   
+    </form>
+   
+   </div>
+    -->
+    <div class="container p-4 border rounded bg-light">
+      <h2 class="text-center mb-4">Add New Apartment</h2>
+  
+      <form [formGroup]="AddApart" (ngSubmit)="onSubmit()" class="container p-4 border rounded bg-light">
+
+          
+          <!-- Apartment Number -->
+          <div class="row mb-3">
+              <label for="apartNum" class="col-sm-3 col-form-label">Apartment Number:</label>
+              <div class="col-sm-9">
+                  <input type="text" id="apartNum" class="form-control" formControlName="apartNum" />
+                  <div class="text-danger" *ngIf="AddApart.get('apartNum')?.hasError('required') && AddApart.get('apartNum')?.touched">
+                      Apartment number is required!
+                  </div>
+                  <div class="text-danger" *ngIf="AddApart.get('apartNum')?.hasError('pattern') && AddApart.get('apartNum')?.touched">
+                      Only numbers are allowed!
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Floor Number -->
+          <div class="row mb-3">
+              <label for="floorNum" class="col-sm-3 col-form-label">Floor Number:</label>
+              <div class="col-sm-9">
+                  <input type="text" id="floorNum" class="form-control" formControlName="floorNum" />
+                  <div class="text-danger" *ngIf="AddApart.get('floorNum')?.hasError('required') && AddApart.get('floorNum')?.touched">
+                      Floor number is required!
+                  </div>
+                  <div class="text-danger" *ngIf="AddApart.get('floorNum')?.hasError('min') && AddApart.get('floorNum')?.touched">
+                      Floor number must be at least 2!
+                  </div>
+                  <div class="text-danger" *ngIf="AddApart.get('floorNum')?.hasError('pattern') && AddApart.get('floorNum')?.touched">
+                      Only numbers are allowed!
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Surface -->
+          <div class="row mb-3">
+              <label for="surface" class="col-sm-3 col-form-label">Surface:</label>
+              <div class="col-sm-9">
+                  <input type="text" id="surface" class="form-control" formControlName="surface" />
+                  <div class="text-danger" *ngIf="AddApart.get('surface')?.hasError('required') && AddApart.get('surface')?.touched">
+                      Surface is required!
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Terrace -->
+          <div class="row mb-3">
+              <label class="col-sm-3 col-form-label">Terrace:</label>
+              <div class="col-sm-9">
+                  <div class="form-check">
+                      <input type="radio" id="terraceYes" value="yes" formControlName="terrace" class="form-check-input" />
+                      <label for="terraceYes" class="form-check-label">Yes</label>
+                  </div>
+                  <div class="form-check">
+                      <input type="radio" id="terraceNo" value="no" formControlName="terrace" class="form-check-input" />
+                      <label for="terraceNo" class="form-check-label">No</label>
+                  </div>
+                  <div class="text-danger" *ngIf="AddApart.get('terrace')?.hasError('required') && AddApart.get('terrace')?.touched">
+                      Please select an option!
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Surface Terrace -->
+          <div class="row mb-3" *ngIf="AddApart.get('terrace')?.value === 'yes'">
+              <label for="surfaceTerrace" class="col-sm-3 col-form-label">Surface Terrace:</label>
+              <div class="col-sm-9">
+                  <input type="text" id="surfaceTerrace" class="form-control" formControlName="surfaceTerrace" />
+                  <div class="text-danger" *ngIf="AddApart.get('surfaceTerrace')?.hasError('required') && AddApart.get('surfaceTerrace')?.touched">
+                      Surface terrace is required when terrace is Yes!
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Category -->
+          <div class="row mb-3">
+              <label class="col-sm-3 col-form-label">Category:</label>
+              <div class="col-sm-9">
+                  <div class="form-check">
+                      <input type="radio" id="categoryS1" value="S+1" formControlName="category" class="form-check-input" />
+                      <label for="categoryS1" class="form-check-label">S+1</label>
+                  </div>
+                  <div class="form-check">
+                      <input type="radio" id="categoryS2" value="S+2" formControlName="category" class="form-check-input" />
+                      <label for="categoryS2" class="form-check-label">S+2</label>
+                  </div>
+                  <div class="form-check">
+                      <input type="radio" id="categoryS3" value="S+3" formControlName="category" class="form-check-input" />
+                      <label for="categoryS3" class="form-check-label">S+3</label>
+                  </div>
+                  <div class="text-danger" *ngIf="AddApart.get('category')?.hasError('required') && AddApart.get('category')?.touched">
+                      Please select a category!
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Residence -->
+          <div class="mb-3">
+              <label for="residence" class="form-label">Residence:</label>
+              <select id="residence" class="form-select" formControlName="residenceId">
+                  <!-- La liste des résidences n'est pas modifiée -->
+              </select>
+              <div class="text-danger" *ngIf="AddApart.get('residenceId')?.hasError('required') && AddApart.get('residenceId')?.touched">
+                  Please select a residence!
+              </div>
+          </div>
+  
+          <!-- Buttons -->
+          <div class="row">
+              <div class="col text-center">
+                  <button type="submit" class="btn btn-primary me-2" [disabled]="AddApart.invalid">Add</button>
+                  <button type="button" class="btn btn-secondary" (click)="AddApart.reset()">Reset</button>
+              </div>
+          </div>
+  
+      </form>
+  </div>

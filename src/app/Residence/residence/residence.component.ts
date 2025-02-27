@@ -142,7 +142,7 @@ export class ResidenceComponent {
     return this.favorites.some(fav => fav.id === residence.id);
   }
 }*/
-
+/*
 import { Component } from '@angular/core';
 import { Residence } from 'src/core/models/Residence';
 
@@ -180,5 +180,78 @@ export class ResidenceComponent {
     return this.listResidences.filter(residence =>
       residence.address.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+  }
+}*/
+import { Component } from '@angular/core';
+import { Router } from '@angular/router'; // Assurez-vous d'importer Router
+import { Residence } from 'src/core/models/Residence';
+import { ResidenceService } from 'src/app/residence.service';
+
+@Component({
+  selector: 'app-residence',
+  templateUrl: './residence.component.html',
+  styleUrls: ['./residence.component.css']
+})
+export class ResidenceComponent {
+  listResidences: Residence[] = [];
+  favorites: Residence[] = [];
+  searchTerm: string = '';
+  newResidence: Residence = { id: 0, name: '', address: '', image: '', status: '' }; // Pour la création de nouvelles résidences
+  isEditing: boolean = false; // Pour savoir si nous sommes en mode édition
+  editingResidenceId: number | null = null; // ID de la résidence en mode édition
+
+  constructor(private residenceService: ResidenceService, private router: Router) { // Ajoutez Router ici
+    this.listResidences = this.residenceService.getResidences(); // Obtenez les résidences du service
+  }
+
+  toggleFavorite(residence: Residence) {
+    const index = this.favorites.findIndex(fav => fav.id === residence.id);
+    if (index === -1) {
+      this.favorites.push(residence);
+    } else {
+      this.favorites.splice(index, 1);
+    }
+  }
+
+  isFavorite(residence: Residence): boolean {
+    return this.favorites.some(fav => fav.id === residence.id);
+  }
+
+  filteredResidences(): Residence[] {
+    return this.listResidences.filter(residence =>
+      residence.address.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
+  addResidence() {
+    if (this.isEditing && this.editingResidenceId !== null) {
+      this.residenceService.updateResidence({ ...this.newResidence, id: this.editingResidenceId });
+      this.isEditing = false;
+      this.editingResidenceId = null;
+    } else {
+      const newId = this.listResidences.length > 0 ? Math.max(...this.listResidences.map(r => r.id)) + 1 : 1;
+      this.residenceService.addResidence({ ...this.newResidence, id: newId });
+    }
+    this.resetForm();
+  }
+
+  editResidence(residence: Residence) {
+    this.newResidence = { ...residence }; // Copiez les données de la résidence à éditer
+    this.isEditing = true;
+    this.editingResidenceId = residence.id; // Mettez à jour l'ID de la résidence en cours d'édition
+
+    // Redirige vers le formulaire de mise à jour
+    this.router.navigate(['/update-residence', residence.id]); // Ajoutez cela pour rediriger
+  }
+
+  deleteResidence(id: number) {
+    this.residenceService.deleteResidence(id); // Appelle le service pour supprimer
+    this.listResidences = this.residenceService.getResidences(); // Mettez à jour la liste après suppression
+}
+
+  private resetForm() {
+    this.newResidence = { id: 0, name: '', address: '', image: '', status: '' };
+    this.isEditing = false; // Remettez également isEditing à false
+    this.editingResidenceId = null; // Réinitialisez l'ID de la résidence en cours d'édition
   }
 }

@@ -5,3 +5,4 @@ export interface Residence {
     image: string;
     status: string;
   }
+  

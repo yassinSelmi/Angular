@@ -30,7 +30,7 @@ export class AppModule { }
 */
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import FormsModule
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -39,6 +39,10 @@ import { HomeComponent } from './home/home.component';
 import { ResidenceComponent } from './Residence/residence/residence.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ResidencedetailsComponent } from './residencedetails/residencedetails.component';
+import { AddResidenceComponent } from './add-residence/add-residence.component';
+import { UpdateResidenceComponent } from './update-residence/update-residence.component';
+import { AddApartmentsComponent } from './add-apartments/add-apartments.component';
+
 
 @NgModule({
   declarations: [
@@ -48,12 +52,17 @@ import { ResidencedetailsComponent } from './residencedetails/residencedetails.c
     HomeComponent,
     ResidenceComponent,
     NotFoundComponent,
-    ResidencedetailsComponent
+    ResidencedetailsComponent,
+    AddResidenceComponent,
+    UpdateResidenceComponent,
+    AddApartmentsComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule // Include FormsModule
+    FormsModule, // Include FormsModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

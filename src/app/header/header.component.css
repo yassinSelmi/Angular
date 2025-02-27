@@ -1,0 +1,32 @@
+/* Styles de la barre de navigation */
+nav {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre légère sous la navigation */
+  }
+  
+  .navbar {
+    border-radius: 5px; /* Coins arrondis pour une esthétique plus douce */
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem; /* Taille de la police pour le nom de la marque */
+    font-weight: bold; /* Mettre en gras */
+    color: #333; /* Couleur du texte */
+  }
+  
+  .nav-link {
+    color: #555; /* Couleur des liens */
+    transition: color 0.3s; /* Transition douce pour le changement de couleur */
+  }
+  
+  .nav-link:hover {
+    color: #ff0000; /* Couleur au survol */
+  }
+  
+  /* Styles pour le menu sur appareils mobiles */
+  .navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.1); /* Bordure pour le bouton de basculement */
+  }
+  
+  .navbar-toggler-icon {
+    background-color: rgba(0, 0, 0, 0.1); /* Couleur de l'icône de basculement */
+  }

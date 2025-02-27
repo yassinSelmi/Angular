@@ -1,6 +1,6 @@
-
+/*
 .white-heading {
-  color: white; /* Set the text color to white */
+  color: white; 
 }
 
 
@@ -48,3 +48,64 @@ button:hover {
   color: red;
   font-weight: bold;
 }
+  */
+  .btn-light, .btn-warning, .btn-btr {
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+    outline: none;
+  }
+  
+  /* Unliked button */
+  .btn-light {
+    background-color: #e4e4e4;
+    color: #444;
+    border: 2px solid #e4e4e4;
+  }
+  
+  .btn-light:hover {
+    background-color: #d3d3d3;
+    transform: translateY(-2px);
+  }
+  
+  /* Liked button */
+  .btn-light.liked {
+    background-color: #ffae42;
+    color: #fff;
+    border: 2px solid #ffae42;
+  }
+  
+  .btn-light.liked:hover {
+    background-color: #ff9505;
+    transform: translateY(-2px);
+  }
+  
+  /* Modifier button */
+  .btn-warning {
+    background-color: #6c757d; /* Gray */
+    color: #fff;
+    border: 2px solid #6c757d;
+  }
+  
+  .btn-warning:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+  }
+  
+  /* Voir détails button */
+  .btn-btr {
+    background-color: #007bff; /* Blue */
+    color: #fff;
+    border: 2px solid #007bff;
+  }
+  
+  .btn-btr:hover {
+    background-color: #ff0000;
+    transform: translateY(-2px);
+  }
+  .white-heading {
+    color: #49b0ff; /* A soothing blue shade */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Add a slight shadow for depth */
+    font-weight: bold;
+  }
